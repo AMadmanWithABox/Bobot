@@ -10,8 +10,8 @@ public class BobotFrame {
     JTextArea textArea = new JTextArea();
 
     public void frameStuff(){
-        frame.getContentPane().setBackground(Color.GRAY);
-        frame.setBounds(200,200,200,200);
+        frame.getContentPane().setBackground(Color.DARK_GRAY);
+        frame.setBounds(200,200,700,700);
         frame.setLayout(null);
 
         textArea.setText("Testing for main menu");
