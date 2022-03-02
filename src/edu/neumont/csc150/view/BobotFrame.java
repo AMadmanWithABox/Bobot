@@ -11,6 +11,7 @@ public class BobotFrame {
         JFrame mainFrame = new JFrame("Bobot");
         JFrame followFrame = new JFrame("Following");
         JFrame ControlFrame = new JFrame("Controller");
+        JFrame objectDetectFrame = new JFrame("Object Detection");
 
         JTextArea mainMenuText = new JTextArea("Main Menu!");
 
