@@ -3,6 +3,8 @@ package edu.neumont.csc150.view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BobotFrame {
 
@@ -10,7 +12,7 @@ public class BobotFrame {
         //Declarations
         JFrame mainFrame = new JFrame("Bobot");
         JFrame followFrame = new JFrame("Following");
-        JFrame ControlFrame = new JFrame("Controller");
+        JFrame controlFrame = new JFrame("Controller");
         JFrame objectDetectFrame = new JFrame("Object Detection");
 
         JTextArea mainMenuText = new JTextArea("Main Menu!");
@@ -51,6 +53,14 @@ public class BobotFrame {
         controlButton.setBackground(Color.WHITE);
         controlButton.setForeground(Color.BLACK);
         controlButton.setBounds(100, 400, 150, 60);
+        controlButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlFrame.setBounds(600,200,300,400);
+                controlFrame.setLayout(null);
+                controlFrame.setVisible(true);
+            }
+        });
 
         //Frame adding
         mainFrame.add(mainMenuText);
