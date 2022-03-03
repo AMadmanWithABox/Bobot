@@ -20,15 +20,14 @@ public class Camera implements WebcamMotionListener {
         panel.setDisplayDebugInfo(true);
         panel.setImageSizeDisplayed(true);
         panel.setMirrored(true);
-        //panel.setBounds(1200,600,1080,1920);
 
 
         window.add(panel);
-        window.setBounds(1200,600,1080,1920);
+        window.setBounds(400,0,1080,1920);
         window.setResizable(true);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.pack();
         window.setVisible(true);
+        window.setLayout(null);
 
         md.setInterval(5000); // one check per 500 ms
         md.addMotionListener(this);
