@@ -1,30 +1,59 @@
 package edu.neumont.csc150.view;
 
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class BobotFrame {
 
-    JFrame frame = new JFrame("Bobot");
-    JTextArea textArea = new JTextArea();
+    public void frameStuff() {
+        //Declarations
+        JFrame mainFrame = new JFrame("Bobot");
+        JFrame followFrame = new JFrame("Following");
+        JFrame ControlFrame = new JFrame("Controller");
+        JFrame controlFrame = new JFrame("Controller");
+        JFrame objectDetectFrame = new JFrame("Object Detection");
 
-    public void frameStuff(){
-        frame.getContentPane().setBackground(Color.DARK_GRAY);
-        frame.setBounds(200,200,700,700);
-        frame.setLayout(null);
+        JTextArea mainMenuText = new JTextArea("Main Menu!");
+        JButton followButton = new JButton("Follow");
+        JButton detectButton = new JButton("Object Detection");
+        JButton controlButton = new JButton("Control");
 
-        textArea.setText("Testing for main menu");
-        frame.add(textArea);
+        //font type
+        String fontForText = "Monospaced";
+        int titles = 20;
 
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setVisible(true);
+        //Frame settings
+        mainFrame.getContentPane().setBackground(Color.DARK_GRAY);
+        mainFrame.setBounds(100, 100, 350, 600);
+        mainFrame.setResizable(false);
+        mainFrame.setLayout(null);
 
+        //TextArea
+        mainMenuText.setFont(new Font(fontForText, Font.BOLD, titles));
+        mainMenuText.setLineWrap(true);
+        mainMenuText.setEditable(false);
+        mainMenuText.setBackground(Color.DARK_GRAY);
 
+        controlButton.setBackground(Color.WHITE);
+        controlButton.setForeground(Color.BLACK);
+        controlButton.setBounds(100, 400, 150, 60);
+        controlButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                controlFrame.setBounds(600,200,300,400);
+                controlFrame.setLayout(null);
+                controlFrame.setVisible(true);
+            }
+        });
 
-
-
-
+        //Frame adding
+        mainFrame.add(mainMenuText);
+        mainFrame.add(followButton);
+        mainFrame.add(detectButton);
+        mainFrame.add(controlButton);
+        mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        mainFrame.setVisible(true);
     }
-
 }
