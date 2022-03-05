@@ -1,0 +1,35 @@
+<component name="libraryTable">
+  <library name="java">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-cli/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-cli/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-common/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-common/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-contrib/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-contrib/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-core/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-core/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-git/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-git/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-ldap/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-ldap/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-mina/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-mina/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-netty/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-netty/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-openpgp/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-openpgp/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-putty/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-putty/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-scp/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-scp/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-sftp/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-sftp/src/test/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-sources/tomcat-apr-5.5.23-sources" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-spring-sftp/src/main/java" />
+      <root url="file://$USER_HOME$/Downloads/apache-sshd-2.8.0-src/apache-sshd-2.8.0/sshd-spring-sftp/src/test/java" />
+    </SOURCES>
+  </library>
+</component>
