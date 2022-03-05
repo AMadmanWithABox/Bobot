@@ -1,19 +1,20 @@
 package edu.neumont.csc150;
 
-import edu.neumont.csc150.model.Camera;
-import edu.neumont.csc150.view.BobotFrame;
-import net.schmizz.sshj.SSHClient;
-import net.schmizz.sshj.connection.channel.direct.Session;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.SftpException;
+import edu.neumont.csc150.controller.BobotController;
 
 import java.io.IOException;
 
 public class BobotMain {
-    public static void main(String[] args) throws IOException {
-//        BobotFrame frame = new BobotFrame();
-//        frame.frameStuff();
-        Camera bobotCam = new Camera();
-        bobotCam.run();
-
+    /**
+     * This is main mathod that calls run to start the robot originally named bobot
+     * @param args
+     * @throws IOException
+     */
+    public static void main(String[] args) throws Exception {
+        BobotController bobotController = new BobotController();
+        bobotController.run();
 
     }
 }
