@@ -1,15 +1,11 @@
 package edu.neumont.csc150.model;
 
 import com.jcraft.jsch.*;
-import net.schmizz.sshj.SSHClient;
 import net.schmizz.sshj.connection.ConnectionException;
 import net.schmizz.sshj.transport.TransportException;
-import net.schmizz.sshj.transport.verification.HostKeyVerifier;
-import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
 
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class SSHConnection {
     JSch jSch = new JSch();
@@ -32,7 +28,6 @@ public class SSHConnection {
         session.setPassword(password);
         session.setConfig("StrictHostKeyChecking", "no");
         session.connect();
-
     }
 
     /**
@@ -48,7 +43,6 @@ public class SSHConnection {
         channel = session.openChannel("exec");
         ((ChannelExec)channel).setCommand(command);
         channel.connect();
-
     }
 
     /**

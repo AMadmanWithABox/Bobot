@@ -1,9 +1,6 @@
 package edu.neumont.csc150;
 
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.SftpException;
 import edu.neumont.csc150.controller.BobotController;
-
 import java.io.IOException;
 
 public class BobotMain {
@@ -13,8 +10,8 @@ public class BobotMain {
      * @throws IOException
      */
     public static void main(String[] args) throws Exception {
+
         BobotController bobotController = new BobotController();
         bobotController.run();
-
     }
 }

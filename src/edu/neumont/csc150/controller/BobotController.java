@@ -1,15 +1,12 @@
 package edu.neumont.csc150.controller;
 
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.SftpException;
 import edu.neumont.csc150.model.Camera;
-import edu.neumont.csc150.model.SSHConnection;
 import edu.neumont.csc150.view.BobotUI;
-import net.schmizz.sshj.transport.verification.PromiscuousVerifier;
-
 import java.io.IOException;
 
 public class BobotController {
+
+    BobotUI bobotUI =new BobotUI();
 
     /**
      * When called this runs all robot functions and UI
@@ -17,18 +14,64 @@ public class BobotController {
      */
     public void run() throws Exception {
 
-        BobotUI bobotUI = new BobotUI();
-
 //      BobotFrame frame = new BobotFrame();
 //      frame.frameStuff();
-//
-        Camera bobotCam = new Camera();
-        bobotCam.createCamera(0);
+        boolean keepLooping = true;
 
-        bobotCam.getAllConnectedCameras();
+        do {
+
+            bobotUI.displayMenu();
+            int selection = bobotUI.getUserInt(1,6);
+            Camera bobotCam = new Camera();
+            BobotUI bobotUI = new BobotUI();
+
+            switch (selection) {
+                case 1: // 1. start camera
+
+                    bobotCam.createCamera(0);
+
+                    break;
+                case 2: // 2. start motion detection(stays on till ended)
+
+                    if (!bobotCam.getMotionDetectionStarted()) {
+                        bobotCam.startDetection();
+                    } else {
+                        bobotUI.motionDetectionOn();
+                    }
+                    do{
+
+                    }
+                    while(!bobotUI.getEnd());
+
+                    bobotCam.stopDetection();
 
 
+                    break;
+                case 3: // 3. detect motion for duration
 
+                    int duration = bobotUI.getUserInt(1, 100000000);
+
+                    do {
+
+                        bobotCam.startDetectionForDuration(duration);
+
+                    } while (bobotUI.getEnd());
+
+                    break;
+                case 4: // 4. set robot mode
+
+                    System.out.println("not done");
+
+                    break;
+                case 5: // 5. Exit
+
+                    bobotCam.stopDetection();
+
+                    bobotUI.printGoodbye();
+                    keepLooping = false;
+
+                    break;
+            }
+        }while(keepLooping);
     }
-
 }
