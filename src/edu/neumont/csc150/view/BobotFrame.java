@@ -1,15 +1,16 @@
 package edu.neumont.csc150.view;
 
+import edu.neumont.csc150.model.Camera;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.event.*;
 
 public class BobotFrame implements KeyListener {
+    Camera bobotCam = new Camera();
 
-    public void frameStuff() {
+    public void Bobotsframe() {
+        bobotCam.getAllConnectedCameras();
         //Declarations
         JFrame mainFrame = new JFrame("Bobot");
 
@@ -17,7 +18,7 @@ public class BobotFrame implements KeyListener {
         //remove?
         JButton followButton = new JButton("Follow");
         //remove too?
-        JButton detectButton = new JButton("Object Detection\n / \nCamera");
+        JButton detectButton = new JButton("Object Detection");
 
         JButton controlButton = new JButton("Control");
 
@@ -86,19 +87,21 @@ public class BobotFrame implements KeyListener {
 
     public void follow() {
         JFrame followFrame = new JFrame("Following");
-        followFrame.setBounds(600,200,300,400);
+        followFrame.setBounds(600, 200, 300, 400);
         followFrame.setLayout(null);
         followFrame.setVisible(true);
     }
+
     public void detect() {
         JFrame objectDetectFrame = new JFrame("Object Detection");
-        objectDetectFrame.setBounds(600,200,300,400);
+        objectDetectFrame.setBounds(600, 200, 300, 400);
         objectDetectFrame.setLayout(null);
         objectDetectFrame.setVisible(true);
     }
+
     public void control() {
         JFrame controlFrame = new JFrame("Controller");
-        controlFrame.setBounds(600,400,175,400);
+        controlFrame.setBounds(600, 400, 175, 400);
         controlFrame.getContentPane().setBackground(Color.DARK_GRAY);
         controlFrame.setResizable(false);
         controlFrame.setLayout(null);
@@ -106,7 +109,7 @@ public class BobotFrame implements KeyListener {
         JTextField keyText = new JTextField();
         keyText.addKeyListener(this);
         keyText.setBackground(Color.BLACK);
-        keyText.setBounds(0, 0, 160,180);
+        keyText.setBounds(0, 0, 160, 180);
         keyText.setEditable(false);
 
         JButton forwardButton = new JButton("↑");
@@ -134,7 +137,6 @@ public class BobotFrame implements KeyListener {
         backButton.setBackground(Color.WHITE);
         backButton.setForeground(Color.BLACK);
         backButton.setCursor(new Cursor(12));
-
 
 
         forwardButton.addActionListener(new ActionListener() {
@@ -179,13 +181,16 @@ public class BobotFrame implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W){
+        if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
             System.out.println("Forward");
-        }if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A){
+        }
+        if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
             System.out.println("Left");
-        }if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D){
+        }
+        if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) {
             System.out.println("Right");
-        }if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S){
+        }
+        if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
             System.out.println("Reverse");
         }
     }
