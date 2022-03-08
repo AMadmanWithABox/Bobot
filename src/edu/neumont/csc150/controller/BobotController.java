@@ -10,68 +10,97 @@ public class BobotController {
 
     /**
      * When called this runs all robot functions and UI
-     * @throws IOException
      */
-    public void run() throws Exception {
+    public void run() {
 
 //      BobotFrame frame = new BobotFrame();
 //      frame.frameStuff();
+        boolean followMode = true;
+        boolean controllerMode = false;
         boolean keepLooping = true;
 
-        do {
+        try {
+            do {
 
-            bobotUI.displayMenu();
-            int selection = bobotUI.getUserInt(1,6);
-            Camera bobotCam = new Camera();
-            BobotUI bobotUI = new BobotUI();
+                bobotUI.displayMenu();
+                int selection = bobotUI.getUserInt(1, 6);
+                Camera bobotCam = new Camera();
+                BobotUI bobotUI = new BobotUI();
 
-            switch (selection) {
-                case 1: // 1. start camera
+                switch (selection) {
+                    case 1: // 1. start camera
 
-                    bobotCam.createCamera(0);
+                        bobotCam.createCamera(1);
 
-                    break;
-                case 2: // 2. start motion detection(stays on till ended)
+                        break;
+                    case 2: // 2. start motion detection(stays on till ended)
 
-                    if (!bobotCam.getMotionDetectionStarted()) {
-                        bobotCam.startDetection();
-                    } else {
-                        bobotUI.motionDetectionOn();
-                    }
-                    do{
+                        if (!bobotCam.getMotionDetectionStarted()) {
+                            bobotCam.startDetection(1);
+                        } else {
+                            bobotUI.motionDetectionOn();
+                        }
+                        do {
 
-                    }
-                    while(!bobotUI.getEnd());
+                        }
+                        while (!bobotUI.getEnd());
 
-                    bobotCam.stopDetection();
+                        bobotCam.stopDetection();
 
 
-                    break;
-                case 3: // 3. detect motion for duration
+                        break;
+                    case 3: // 3. detect motion for duration
 
-                    int duration = bobotUI.getUserInt(1, 100000000);
+                        int duration = bobotUI.getUserInt(1, 100000000);
 
-                    do {
+                        do {
 
-                        bobotCam.startDetectionForDuration(duration);
+                            bobotCam.startDetectionForDuration(duration);
 
-                    } while (bobotUI.getEnd());
+                        } while (bobotUI.getEnd());
 
-                    break;
-                case 4: // 4. set robot mode
+                        break;
+                    case 4: // 4. set robot mode
 
-                    System.out.println("not done");
+                        bobotUI.displayRobotMode();
 
-                    break;
-                case 5: // 5. Exit
+                        selection = bobotUI.getUserInt(1, 2);
 
-                    bobotCam.stopDetection();
+                        switch (selection) {
 
-                    bobotUI.printGoodbye();
-                    keepLooping = false;
+                            case 1:
 
-                    break;
-            }
-        }while(keepLooping);
+                                followMode = true;
+
+                                controllerMode = false;
+
+                                bobotUI.printFollowRobotMode();
+
+                                break;
+                            case 2:
+
+                                followMode = false;
+
+                                controllerMode = true;
+
+                                bobotUI.printControllerRobotMode();
+
+                                break;
+                        }
+
+                        break;
+                    case 5: // 5. Exit
+
+                        bobotCam.stopDetection();
+                        bobotCam.stopCamera();
+                        bobotUI.printGoodbye();
+                        keepLooping = false;
+
+                        break;
+                }
+            } while (keepLooping);
+        }catch(Exception ex){
+            bobotUI.printError(ex);
+        }
     }
 }

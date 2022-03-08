@@ -11,6 +11,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.NoninvertibleTransformException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -55,23 +57,35 @@ public class Camera implements WebcamMotionListener {
      *
      * @param camara
      */
-    public void createCamera(int camara) throws MalformedURLException {
+    public void createCamera(int camera) throws MalformedURLException {
 
-        myWebcam = Webcam.getWebcams().get(0);
+        myWebcam = Webcam.getWebcams().get(camera);
         myWebcam.close();
         myWebcam.setViewSize(WebcamResolution.VGA.getSize());
         myWebcam.open();
 
-        md = new WebcamMotionDetector(Webcam.getDefault());
+        myWebcam.setImageTransformer(new WebcamImageTransformer() {
+            @Override
+            public BufferedImage transform(BufferedImage bufferedImage) {
+                try {
+                    bufferedImage.createGraphics().transform(new AffineTransform().createInverse());
+                } catch (NoninvertibleTransformException e) {
+                    e.printStackTrace();
+                }
+                return bufferedImage;
+            }
+        });
+
+        md = new WebcamMotionDetector(Webcam.getWebcams().get(camera));
         JFrame window = new JFrame("Robot View");
-        panel = new WebPanel(Webcam.getDefault(), md);
+        panel = new WebPanel(Webcam.getWebcams().get(camera), md);
 
         panel.setFPSDisplayed(true);
         panel.setDisplayDebugInfo(true);
         panel.setImageSizeDisplayed(true);
         panel.setMirrored(true);
 
-        Timer timer = new Timer(30, new ActionListener() {
+        Timer timer = new Timer(1, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 panel.repaint();
@@ -90,9 +104,9 @@ public class Camera implements WebcamMotionListener {
     /**
      * Starts motion detection
      */
-    public void startDetection() {
+    public void startDetection(int camera) {
         motionDetectionStarted = true;
-        md = new WebcamMotionDetector(Webcam.getDefault());
+        md = new WebcamMotionDetector(Webcam.getWebcams().get(camera));
         md.setInterval(MOTION_INTERVAL); // one check per 500 ms
         md.addMotionListener(this);
         md.clearInertia();

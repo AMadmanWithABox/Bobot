@@ -129,4 +129,18 @@ public class BobotUI {
         System.out.println("Motion detection is already on");
     }
 
+    public void displayRobotMode(){
+
+        System.out.println("1. for follow mode \r\n2. for controller mode");
+
+    }
+
+    public void printFollowRobotMode(){
+        System.out.println("Robot set to follow mode");
+    }
+
+    public void printControllerRobotMode(){
+        System.out.println("Robot set to controller mode");
+    }
+
 }
