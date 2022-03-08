@@ -182,6 +182,7 @@ public class BobotFrame implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
+
             System.out.println("Forward");
         }
         if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
