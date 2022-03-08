@@ -1,6 +1,8 @@
 package edu.neumont.csc150.view;
 
+import edu.neumont.csc150.controller.BobotController;
 import edu.neumont.csc150.model.Camera;
+import edu.neumont.csc150.model.RobotController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +10,7 @@ import java.awt.event.*;
 
 public class BobotFrame implements KeyListener {
     Camera bobotCam = new Camera();
+    RobotController bc = new RobotController();
 
     public void Bobotsframe() {
         bobotCam.getAllConnectedCameras();
@@ -142,26 +145,26 @@ public class BobotFrame implements KeyListener {
         forwardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                bc.goForward();
             }
         });
         leftButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                bc.turnLeft();
             }
         });
         rightButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                bc.turnRight();
             }
         });
 
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //go backwards
+                bc.reverse();
             }
         });
 
@@ -182,16 +185,19 @@ public class BobotFrame implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_UP || keyCode == KeyEvent.VK_W) {
-
+            bc.goForward();
             System.out.println("Forward");
         }
         if (keyCode == KeyEvent.VK_LEFT || keyCode == KeyEvent.VK_A) {
+            bc.turnLeft();
             System.out.println("Left");
         }
         if (keyCode == KeyEvent.VK_RIGHT || keyCode == KeyEvent.VK_D) {
+            bc.turnRight();
             System.out.println("Right");
         }
         if (keyCode == KeyEvent.VK_DOWN || keyCode == KeyEvent.VK_S) {
+            bc.reverse();
             System.out.println("Reverse");
         }
     }

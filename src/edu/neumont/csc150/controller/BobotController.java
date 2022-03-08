@@ -84,7 +84,7 @@ public class BobotController {
 
                                 controllerMode = true;
 
-                                frame.frameStuff();
+                                frame.Bobotsframe();
 
                                 bobotUI.printControllerRobotMode();
 
