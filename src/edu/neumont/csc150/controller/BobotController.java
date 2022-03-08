@@ -1,6 +1,7 @@
 package edu.neumont.csc150.controller;
 
 import edu.neumont.csc150.model.Camera;
+import edu.neumont.csc150.view.BobotFrame;
 import edu.neumont.csc150.view.BobotUI;
 import java.io.IOException;
 
@@ -13,8 +14,8 @@ public class BobotController {
      */
     public void run() {
 
-//      BobotFrame frame = new BobotFrame();
-//      frame.frameStuff();
+        BobotFrame frame = new BobotFrame();
+
         boolean followMode = true;
         boolean controllerMode = false;
         boolean keepLooping = true;
@@ -82,6 +83,8 @@ public class BobotController {
                                 followMode = false;
 
                                 controllerMode = true;
+
+                                frame.frameStuff();
 
                                 bobotUI.printControllerRobotMode();
 

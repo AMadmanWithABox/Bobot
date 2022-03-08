@@ -32,6 +32,7 @@ public class Camera implements WebcamMotionListener {
     private boolean cameraStarted = false;
     private boolean motionDetectionStarted = false;
     private Webcam myWebcam;
+    RobotController bobotController = new RobotController();
 
 
     /**
@@ -55,7 +56,7 @@ public class Camera implements WebcamMotionListener {
     /**
      * When called this method creates a camera as well as the Jframe panel and window
      *
-     * @param camara
+     * @param camera
      */
     public void createCamera(int camera) throws MalformedURLException {
 
@@ -157,47 +158,22 @@ public class Camera implements WebcamMotionListener {
     @Override
     public void motionDetected(WebcamMotionEvent webcamMotionEvent) {
 
-        Graphics g = panel.getGraphics();
-        g.setPaintMode();
-
-        startConnection("192.168.160.18", "pi", "BeepBoop", 22, "python3 motorTest.py");
-
         addDetectedObject(webcamMotionEvent.getPreviousImage(), webcamMotionEvent.getCog().y, webcamMotionEvent.getCog().x, webcamMotionEvent.getArea());
 
-        bobotUI.printMovementLocation(getYDirectionOfMovement(webcamMotionEvent, webcamMotionEvent.getCog().getLocation().y), getXDirectionOfMovement(webcamMotionEvent, webcamMotionEvent.getCog().getLocation().x));
+        String xDirection = getXDirectionOfMovement(webcamMotionEvent, webcamMotionEvent.getCog().getLocation().x);
 
-    }
+        switch(xDirection){
+            case "Left":
+                bobotController.turnLeft();
+                bobotController.goForward();
+                break;
 
-    /**
-     * When called opens connection to pi then sends given command
-     *
-     * @param ip
-     * @param username
-     * @param password
-     * @param port
-     * @param command
-     */
-    public void startConnection(String ip, String username, String password, int port, String command) {
-        SSHConnection sshConnection = new SSHConnection();
-        try {
-            sshConnection.connectToSSHServer(ip, username, password, port);
-        } catch (Exception e) {
-            e.printStackTrace();
+            case "Right":
+                bobotController.turnRight();
+                bobotController.goForward();
+                break;
         }
-        try {
-            sshConnection.commandSSHClient(command);
-        } catch (TransportException e) {
-            e.printStackTrace();
-        } catch (ConnectionException e) {
-            e.printStackTrace();
-        } catch (JSchException e) {
-            e.printStackTrace();
-        }
-        try {
-            sshConnection.sshDisconnect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     /**
