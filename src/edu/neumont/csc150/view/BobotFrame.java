@@ -18,10 +18,7 @@ public class BobotFrame implements KeyListener {
         JFrame mainFrame = new JFrame("Bobot");
 
         JTextArea mainMenuText = new JTextArea("Main Menu!");
-        //remove?
-        JButton followButton = new JButton("Follow");
-        //remove too?
-        JButton detectButton = new JButton("Object Detection");
+        JTextArea instructionsText = new JTextArea();
 
         JButton controlButton = new JButton("Control");
 
@@ -43,29 +40,16 @@ public class BobotFrame implements KeyListener {
         mainMenuText.setForeground(Color.WHITE);
         mainMenuText.setBounds(120, 100, 150, 100);
 
-        //Button1
-        followButton.setBackground(Color.WHITE);
-        followButton.setForeground(Color.BLACK);
-        followButton.setCursor(new Cursor(12));
-        followButton.setBounds(100, 200, 150, 60);
-        followButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                follow();
-            }
-        });
-
-        //Button2
-        detectButton.setBackground(Color.WHITE);
-        detectButton.setForeground(Color.BLACK);
-        detectButton.setCursor(new Cursor(12));
-        detectButton.setBounds(100, 300, 150, 60);
-        detectButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                detect();
-            }
-        });
+        //TextArea 2
+        instructionsText.setText("WASD " +
+                "or " +
+                "← ↑ ↓ →");
+        instructionsText.setFont(new Font(fontForText, Font.BOLD, titles));
+        instructionsText.setLineWrap(true);
+        instructionsText.setEditable(false);
+        mainMenuText.setForeground(Color.DARK_GRAY);
+        instructionsText.setForeground(Color.WHITE);
+        instructionsText.setBounds(120,200, 150,100);
 
         //Button3
         controlButton.setBackground(Color.WHITE);
@@ -81,8 +65,6 @@ public class BobotFrame implements KeyListener {
 
         //Frame adding
         mainFrame.add(mainMenuText);
-        mainFrame.add(followButton);
-        mainFrame.add(detectButton);
         mainFrame.add(controlButton);
         mainFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainFrame.setVisible(true);
