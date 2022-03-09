@@ -9,8 +9,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class BobotFrame implements KeyListener {
-    Camera bobotCam = new Camera();
-    RobotController bc = new RobotController();
+    private Camera bobotCam = new Camera();
+    private RobotController bc = new RobotController();
 
     public void Bobotsframe() {
         bobotCam.getAllConnectedCameras();
