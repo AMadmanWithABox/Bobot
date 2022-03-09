@@ -31,23 +31,33 @@ public class BobotController {
                 switch (selection) {
                     case 1: // 1. start camera
 
-                        bobotCam.createCamera(1);
+                        if (bobotCam.getCameraStarted()){
+
+                        }else{
+                            bobotCam.createCamera(1);
+                        }
+
 
                         break;
                     case 2: // 2. start motion detection(stays on till ended)
 
-                        if (!bobotCam.getMotionDetectionStarted()) {
-                            bobotCam.startDetection(1);
-                        } else {
-                            bobotUI.motionDetectionOn();
-                        }
-                        do {
+                        if(bobotCam.getCameraStarted()){
+                            if (!bobotCam.getMotionDetectionStarted()) {
+                                bobotCam.startDetection(1);
+                            } else {
+                                bobotUI.motionDetectionOn();
+                            }
+                            do {
+
+                            }
+                            while (!bobotUI.getEnd());
+
+                            bobotCam.stopDetection();
+                        }else{
+
+
 
                         }
-                        while (!bobotUI.getEnd());
-
-                        bobotCam.stopDetection();
-
 
                         break;
                     case 3: // 3. detect motion for duration

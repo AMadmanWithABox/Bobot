@@ -1,39 +1,33 @@
 package edu.neumont.csc150.model;
 
 import com.github.sarxos.webcam.*;
-import com.github.sarxos.webcam.ds.ipcam.IpCamDriver;
-import com.jcraft.jsch.JSchException;
+import com.github.sarxos.webcam.util.jh.JHFlipFilter;
 import edu.neumont.csc150.view.BobotUI;
-import net.schmizz.sshj.connection.ConnectionException;
-import net.schmizz.sshj.transport.TransportException;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.geom.NoninvertibleTransformException;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
+import java.awt.image.BufferedImageOp;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Camera implements WebcamMotionListener {
+public class Camera implements WebcamMotionListener, WebcamImageTransformer {
 
-    private static WebcamPanel panel;
-    private static WebcamMotionDetector md;
-    private final int MOTION_INTERVAL = 500;
     private final int VIEW_SIZE_HEIGHT = WebcamResolution.VGA.getHeight();
     private final int VIEW_SIZE_WIDTH = WebcamResolution.VGA.getWidth();
+    private final int MOTION_INTERVAL = 500;
+    private final BufferedImageOp FILTER = new JHFlipFilter(6);
+    private static WebcamPanel panel;
+    private static WebcamMotionDetector md;
     private List<Object> detectedObjects = new ArrayList<>();
     private BobotUI bobotUI = new BobotUI();
     private boolean cameraStarted = false;
     private boolean motionDetectionStarted = false;
     private Webcam myWebcam;
-    RobotController bobotController = new RobotController();
-
+    MotorController bobotController = new MotorController();
 
     /**
      * This method returns the panel that the camara is displayed on, for use in other methods
@@ -65,17 +59,8 @@ public class Camera implements WebcamMotionListener {
         myWebcam.setViewSize(WebcamResolution.VGA.getSize());
         myWebcam.open();
 
-        myWebcam.setImageTransformer(new WebcamImageTransformer() {
-            @Override
-            public BufferedImage transform(BufferedImage bufferedImage) {
-                try {
-                    bufferedImage.createGraphics().transform(new AffineTransform().createInverse());
-                } catch (NoninvertibleTransformException e) {
-                    e.printStackTrace();
-                }
-                return bufferedImage;
-            }
-        });
+
+        myWebcam.setImageTransformer(this);
 
         md = new WebcamMotionDetector(Webcam.getWebcams().get(camera));
         JFrame window = new JFrame("Robot View");
@@ -85,13 +70,6 @@ public class Camera implements WebcamMotionListener {
         panel.setDisplayDebugInfo(true);
         panel.setImageSizeDisplayed(true);
         panel.setMirrored(true);
-
-        Timer timer = new Timer(1, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                panel.repaint();
-            }
-        });
 
         window.add(panel);
         window.setResizable(true);
@@ -161,6 +139,18 @@ public class Camera implements WebcamMotionListener {
         addDetectedObject(webcamMotionEvent.getPreviousImage(), webcamMotionEvent.getCog().y, webcamMotionEvent.getCog().x, webcamMotionEvent.getArea());
 
         String xDirection = getXDirectionOfMovement(webcamMotionEvent, webcamMotionEvent.getCog().getLocation().x);
+
+        Timer timer = new Timer(1, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panel.repaint();
+            }
+        });
+
+
+        for (int i = 0; i < 10000; i++) {
+
+        }
 
         switch(xDirection){
             case "Left":
@@ -297,5 +287,15 @@ public class Camera implements WebcamMotionListener {
      */
     public void setMotionDetectionStarted(boolean motionDetectionStarted) {
         this.motionDetectionStarted = motionDetectionStarted;
+    }
+
+    /**
+     * This flips the image input
+     * @param bufferedImage
+     * @return
+     */
+    @Override
+    public BufferedImage transform(BufferedImage bufferedImage) {
+        return FILTER.filter(bufferedImage,null);
     }
 }

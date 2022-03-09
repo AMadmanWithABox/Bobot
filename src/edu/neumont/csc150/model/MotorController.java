@@ -6,22 +6,36 @@ import net.schmizz.sshj.transport.TransportException;
 
 import java.io.IOException;
 
-public class RobotController {
+public class MotorController {
 
+    /**
+     * Commands bot to turn left
+     */
     public void turnLeft(){
-        startConnection("192.168.160.18", "pi", "BeepBoop", 22, "python3 Directions/Left.py");
+        startConnection("192.168.34.18", "pi", "BeepBoop", 22, "python3 Directions/Left.py");
     }
 
+    /**
+     * Commands bot to turn right
+     */
     public void turnRight(){
-        startConnection("192.168.160.18", "pi", "BeepBoop", 22, "python3 Directions/Right.py");
+
+        startConnection("192.168.34.18", "pi", "BeepBoop", 22, "python3 Directions/Right.py");
     }
 
+    /**
+     * Commands bot to go forward
+     */
     public void goForward(){
-        startConnection("192.168.160.18", "pi", "BeepBoop", 22, "python3 Directions/Forward.py");
+        startConnection("192.168.34.18", "pi", "BeepBoop", 22, "python3 Directions/Forward.py");
     }
 
+    /**
+     * Commands bot to reverse
+     */
     public void reverse(){
-        startConnection("192.168.160.18", "pi", "BeepBoop", 22, "python3 Directions/Reverse.py");
+
+        startConnection("192.168.34.18", "pi", "BeepBoop", 22, "python3 Directions/Reverse.py");
     }
 
     /**

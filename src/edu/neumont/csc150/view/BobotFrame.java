@@ -2,20 +2,16 @@ package edu.neumont.csc150.view;
 
 import edu.neumont.csc150.controller.BobotController;
 import edu.neumont.csc150.model.Camera;
-import edu.neumont.csc150.model.RobotController;
+import edu.neumont.csc150.model.MotorController;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
 public class BobotFrame implements KeyListener {
-    private Camera bobotCam = new Camera();
-    private RobotController bc = new RobotController();
+    Camera bobotCam = new Camera();
+    MotorController bc = new MotorController();
 
-    /**
-     * JFrame for Bobot,
-     * Instructions menu and Manual Control
-     */
     public void Bobotsframe() {
         bobotCam.getAllConnectedCameras();
         //Declarations
@@ -55,7 +51,7 @@ public class BobotFrame implements KeyListener {
         instructionsText.setForeground(Color.WHITE);
         instructionsText.setBounds(120,200, 150,100);
 
-        //Button
+        //Button3
         controlButton.setBackground(Color.WHITE);
         controlButton.setForeground(Color.BLACK);
         controlButton.setCursor(new Cursor(12));
@@ -74,9 +70,20 @@ public class BobotFrame implements KeyListener {
         mainFrame.setVisible(true);
     }
 
-    /**
-     * Controller frame for Bobot
-     */
+    public void follow() {
+        JFrame followFrame = new JFrame("Following");
+        followFrame.setBounds(600, 200, 300, 400);
+        followFrame.setLayout(null);
+        followFrame.setVisible(true);
+    }
+
+    public void detect() {
+        JFrame objectDetectFrame = new JFrame("Object Detection");
+        objectDetectFrame.setBounds(600, 200, 300, 400);
+        objectDetectFrame.setLayout(null);
+        objectDetectFrame.setVisible(true);
+    }
+
     public void control() {
         JFrame controlFrame = new JFrame("Controller");
         controlFrame.setBounds(600, 400, 175, 400);
@@ -100,7 +107,6 @@ public class BobotFrame implements KeyListener {
         rightButton.setBounds(105, 255, 50, 40);
         backButton.setBounds(55, 305, 50, 40);
 
-        //button customization
         forwardButton.setBackground(Color.WHITE);
         forwardButton.setForeground(Color.BLACK);
         forwardButton.setCursor(new Cursor(12));

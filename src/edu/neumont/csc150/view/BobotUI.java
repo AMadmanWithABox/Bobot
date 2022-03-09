@@ -129,18 +129,34 @@ public class BobotUI {
         System.out.println("Motion detection is already on");
     }
 
+    /**
+     * Displays menu for robot mode
+     */
     public void displayRobotMode(){
 
         System.out.println("1. for follow mode \r\n2. for controller mode");
 
     }
 
+    /**
+     * Displays if robot mode is follow
+     */
     public void printFollowRobotMode(){
         System.out.println("Robot set to follow mode");
     }
 
+    /**
+     * Displays if robot mode is controller
+     */
     public void printControllerRobotMode(){
         System.out.println("Robot set to controller mode");
+    }
+
+    /**
+     * Prints if camera is not on
+     */
+    public void printCamNotOn(){
+        System.out.println("camera not on please turn on camera");
     }
 
 }
